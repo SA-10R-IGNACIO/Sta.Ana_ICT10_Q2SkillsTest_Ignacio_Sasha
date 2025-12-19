@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Club Information</title>
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <!-- GREEN & BLUE DESIGN -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #eaf7f5;
+            color: #0f3d3e;
+        }
+
+        h1 {
+            color: #1b7f7a;
+            text-align: center;
+            border-bottom: 2px solid #1b7f7a;
+            padding-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1b7f7a;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #4db6ac;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4db6ac;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2e8b8b;
+        }
+
+        #club-info {
+            background-color: #f2fbfa;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid #4db6ac;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>School Club Information</h1>
+
+<label for="club-select">Select a club:</label>
+<select id="club-select">
+    <option value="">-- Select a club --</option>
+    <option value="volleyball">Volleyball Club</option>
+    <option value="badminton">Badminton Club</option>
+    <option value="basketball">Basketball Club</option>
+    <option value="swimming">Swimming Club</option>
+    <option value="chess">Chess Club</option>
+</select>
+
+<button py-click="show_club_info">Show Club Information</button>
+
+<pre id="club-info"></pre>
+
+<!-- PYTHON (INLINE, WORKING) -->
+<script type="py">
+from pyscript import display, document
+
+club_info = {
+    "volleyball": {
+        "name": "Volleyball Club",
+        "description": "A club for students who enjoy playing volleyball and improving teamwork and coordination skills.",
+        "meeting_time": "Every Monday and Thursday, 4:00–6:00 PM",
+        "location": "School Gym",
+        "advisor": "Mr. Ramirez",
+        "members": 25,
+        "category": "Sports"
+    },
+    "badminton": {
+        "name": "Badminton Club",
+        "description": "Focuses on developing agility, reflexes, and proper badminton techniques.",
+        "meeting_time": "Every Tuesday, 3:30–5:30 PM",
+        "location": "Covered Court",
+        "advisor": "Ms. Lim",
+        "members": 18,
+        "category": "Sports"
+    },
+    "basketball": {
+        "name": "Basketball Club",
+        "description": "Enhances basketball skills such as shooting, passing, and teamwork through regular practice.",
+        "meeting_time": "Every Wednesday and Friday, 4:00–6:00 PM",
+        "location": "Basketball Court",
+        "advisor": "Coach Dela Cruz",
+        "members": 30,
+        "category": "Sports"
+    },
+    "swimming": {
+        "name": "Swimming Club",
+        "description": "Trains students in swimming techniques, endurance, and water safety.",
+        "meeting_time": "Every Saturday, 8:00–10:00 AM",
+        "location": "School Swimming Pool",
+        "advisor": "Mr. Aquino",
+        "members": 15,
+        "category": "Sports"
+    },
+    "chess": {
+        "name": "Chess Club",
+        "description": "Develops critical thinking and strategic skills through chess practice and competitions.",
+        "meeting_time": "Every Friday, 3:30–5:00 PM",
+        "location": "Room 405",
+        "advisor": "Mr. Santos",
+        "members": 20,
+        "category": "Academic"
+    }
+}
+
+def show_club_info(event=None):
+    selected = document.getElementById("club-select").value
+    output = document.getElementById("club-info")
+    output.innerHTML = ""
+
+    if selected:
+        info = club_info[selected]
+        display(
+f"""{info['name']}
+Description: {info['description']}
+Meeting Time: {info['meeting_time']}
+Location: {info['location']}
+Advisor: {info['advisor']}
+Number of Members: {info['members']}
+Category: {info['category']}""",
+            target="club-info"
+        )
+</script>
+
+</body>
+</html>
